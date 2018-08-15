@@ -1,0 +1,29 @@
+<div *ngIf="appState == 'default' || appState == 'emptyList'">
+  <h3 class="text-success">Add Todo</h3>
+  <form (submit)="addTodo()">
+    <input class="form-control" type="text" [(ngModel)]="text" name="addTodo">
+  </form>
+</div>
+
+<div *ngIf="appState == 'edit'">
+  <h3 class="text-warning">Edit Todo</h3>
+  <form (submit)="updateTodo()">
+    <input class="form-control" type="text" [(ngModel)]="text" name="editTodo">
+  </form>
+</div>
+
+<div class="bs-component" *ngIf="appState == 'default'">
+  <h3>Todo List</h3>
+  <div class="jumbotron">
+    <ul>
+      <li *ngFor="let todo of todos" class="">
+        <span (click)="editTodo(todo)">{{todo.text}}</span>
+        <button class="btn btn-outline-danger btn-sm" (click)="deleteTodo(todo.text)">X</button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div *ngIf="appState == 'emptyList'">
+  <h3 class="text-info">Your Todos are Todone!</h3>
+</div>
